@@ -12,20 +12,23 @@ Material:
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
+  stringTagMap:
+    RenderType: Transparent
+  disabledShaderPasses:
+  - DepthOnly
   m_LockedProperties: _Fresnel_Power
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - _Texture:
-        m_Texture: {fileID: 2800000, guid: 8303432dd9237c94f95e86715b2ef0c6, type: 3}
+        m_Texture: {fileID: 2800000, guid: 14bede7f9f670ae42bb37a0da043e91e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -42,18 +45,29 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _AlphaClip: 0
+    - _AlphaToMask: 0
+    - _Blend: 0
+    - _CastShadows: 1
+    - _Cull: 2
     - _DEBUG: 0
     - _Depth_Blend: 1.71
+    - _DstBlend: 10
     - _Fresnel_Power: 5
     - _Fresnel_Reflection: 0.3
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Scanline_Density: 50
-    - _Scanline_Speed: -0.1
-    - _Texture_Speed: 1
+    - _Scanline_Density: 100
+    - _Scanline_Speed: 50
+    - _SrcBlend: 5
+    - _Surface: 1
+    - _Texture_Speed: 0.1
+    - _ZTest: 4
+    - _ZWrite: 0
+    - _ZWriteControl: 0
     m_Colors:
     - _Color: {r: 0, g: 9.382202, b: 32, a: 1}
-    - _Texture_Tiling: {r: 8, g: 10, b: 0, a: 0}
+    - _Texture_Tiling: {r: 1.49, g: 1.5, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &563448132069296749
 MonoBehaviour:
