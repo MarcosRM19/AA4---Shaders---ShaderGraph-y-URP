@@ -51,7 +51,7 @@ Material:
     - _CastShadows: 1
     - _Cull: 2
     - _DEBUG: 0
-    - _Depth_Blend: 1.71
+    - _Depth_Blend: 2.86
     - _DstBlend: 10
     - _Fresnel_Power: 5
     - _Fresnel_Reflection: 0.3
