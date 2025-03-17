@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: E1-Test
+  m_Name: E1-Shield
   m_Shader: {fileID: -6465566751694194690, guid: 2ada046338a44fc4db1a891b29da67da,
     type: 3}
   m_Parent: {fileID: 0}
@@ -51,7 +51,7 @@ Material:
     - _CastShadows: 1
     - _Cull: 2
     - _DEBUG: 0
-    - _Depth_Blend: 2.86
+    - _Depth_Blend: 5
     - _DstBlend: 10
     - _Fresnel_Power: 5
     - _Fresnel_Reflection: 0.3
