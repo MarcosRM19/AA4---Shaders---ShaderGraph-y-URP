@@ -53,7 +53,7 @@ Material:
     - _DEBUG: 0
     - _Depth_Blend: 5
     - _DstBlend: 10
-    - _Fresnel_Power: 5
+    - _Fresnel_Power: 12.9
     - _Fresnel_Reflection: 0.3
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -61,13 +61,13 @@ Material:
     - _Scanline_Speed: 50
     - _SrcBlend: 5
     - _Surface: 1
-    - _Texture_Speed: 0.1
+    - _Texture_Speed: 0.05
     - _ZTest: 4
     - _ZWrite: 0
     - _ZWriteControl: 0
     m_Colors:
     - _Color: {r: 0, g: 9.382202, b: 32, a: 1}
-    - _Texture_Tiling: {r: 1.49, g: 1.5, b: 0, a: 0}
+    - _Texture_Tiling: {r: 1.5, g: 1.5, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &563448132069296749
 MonoBehaviour:
