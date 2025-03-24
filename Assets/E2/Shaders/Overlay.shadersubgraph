@@ -247,21 +247,21 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 194.0,
+            "x": 198.00003051757813,
             "y": 303.0,
-            "width": 208.0,
+            "width": 207.99996948242188,
             "height": 326.0
         }
     },
     "m_Slots": [
         {
-            "m_Id": "4a47991bed6847a485d44f05f0201ac9"
+            "m_Id": "498aab6c9c644c2183fce012567c4ea2"
         },
         {
-            "m_Id": "83a16563c3b2419097e12e480a4b0d42"
+            "m_Id": "2ce1fb7a70e04625b388da5696318c10"
         },
         {
-            "m_Id": "efd645d478cb4495a2f72db445428b50"
+            "m_Id": "69f756b533c7411f8bd4bf61c7f1a30c"
         },
         {
             "m_Id": "fa6d866974be4ff39f2a12a4b6ec528f"
@@ -281,7 +281,22 @@
     "m_SourceType": 1,
     "m_FunctionName": "Overlay",
     "m_FunctionSource": "",
-    "m_FunctionBody": "float result1 = 1.0 - 2.0 * (1.0 - Base) * (1.0 - Blend);\r\nfloat result2 = 2.0 * Base * Blend;\r\nfloat zeroOrOne = step(Base, 0.5);\r\nOut = result2 * zeroOrOne + (1 - zeroOrOne) * result1;\r\nOut = lerp(Base, Out, Opacity);"
+    "m_FunctionBody": "float result1 = 1.0 - 2.0 * (1.0 - VertextColor) * (1.0 - Noise);\r\nfloat result2 = 2.0 * VertextColor * Noise;\r\nfloat zeroOrOne = step(VertextColor, 0.5);\r\nOut = result2 * zeroOrOne + (1 - zeroOrOne) * result1;\r\nOut = lerp(VertextColor, Out, Strength);"
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "2ce1fb7a70e04625b388da5696318c10",
+    "m_Id": 1,
+    "m_DisplayName": "Noise",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Noise",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
 }
 
 {
@@ -351,12 +366,12 @@
 {
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
-    "m_ObjectId": "4a47991bed6847a485d44f05f0201ac9",
+    "m_ObjectId": "498aab6c9c644c2183fce012567c4ea2",
     "m_Id": 0,
-    "m_DisplayName": "Base",
+    "m_DisplayName": "VertextColor",
     "m_SlotType": 0,
     "m_Hidden": false,
-    "m_ShaderOutputName": "Base",
+    "m_ShaderOutputName": "VertextColor",
     "m_StageCapability": 3,
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,
@@ -456,6 +471,21 @@
 {
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "69f756b533c7411f8bd4bf61c7f1a30c",
+    "m_Id": 3,
+    "m_DisplayName": "Strength",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Strength",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "6f8ac2bd52984e7a9a91126b13d6449c",
     "m_Id": 4,
     "m_DisplayName": "A",
@@ -477,21 +507,6 @@
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",
-    "m_StageCapability": 3,
-    "m_Value": 0.0,
-    "m_DefaultValue": 0.0,
-    "m_Labels": []
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
-    "m_ObjectId": "83a16563c3b2419097e12e480a4b0d42",
-    "m_Id": 1,
-    "m_DisplayName": "Blend",
-    "m_SlotType": 0,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "Blend",
     "m_StageCapability": 3,
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,
@@ -749,21 +764,6 @@
         "z": 0.0,
         "w": 0.0
     },
-    "m_Labels": []
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
-    "m_ObjectId": "efd645d478cb4495a2f72db445428b50",
-    "m_Id": 3,
-    "m_DisplayName": "Opacity",
-    "m_SlotType": 0,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "Opacity",
-    "m_StageCapability": 3,
-    "m_Value": 0.0,
-    "m_DefaultValue": 0.0,
     "m_Labels": []
 }
 
