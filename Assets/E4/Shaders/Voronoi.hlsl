@@ -45,5 +45,5 @@ void getBorder_float(float2 UV, out float Out)
 {
     float d = VoronoiDistance(UV);
 
-    Out = smoothstep(0.0, 1.25, d);
+    Out = smoothstep(0.0, 1.2, d);
 }
