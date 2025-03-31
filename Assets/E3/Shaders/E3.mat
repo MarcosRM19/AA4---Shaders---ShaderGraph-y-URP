@@ -71,7 +71,7 @@ Material:
     - _SnowSmoothness: 0.02
     - _SnowSoftness: 0.05
     - _SnowStart: 0.38
-    - _Tile: 4
+    - _Tile: 0.75
     m_Colors:
     - _Color: {r: 0.42352942, g: 0.3254902, b: 0.28235295, a: 1}
     - _SnowColor: {r: 0.9490196, g: 1, b: 1, a: 1}
