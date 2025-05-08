@@ -8,19 +8,22 @@ Shader "Unlit/E1.Shield_effect"
         _Scanline_Speed("Scanline Speed", Float) = 1
         _Scanline_Density("Scanline Density", Float) = 20
         _Fresnel_Power("Fresnel Power", Float) = 5
-        _Depth_Blend("Depth Blend", Float) = 0.5
     }
     SubShader
     {
-        Tags { "RenderType"="Transparent" }
+        Tags { "RenderType"="Transparent"
+            "Queue" = "Transparent"
+        }
 
+        Blend SrcAlpha OneMinusSrcAlpha
+        ZWrite Off
+        LOD 100
+        
         Pass
         {
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-
-            #pragma multi_compile_fog
 
             #include "UnityCG.cginc"
 
@@ -47,18 +50,18 @@ Shader "Unlit/E1.Shield_effect"
             float _Scanline_Speed;
             float _Scanline_Density;
             float _Fresnel_Power;
-            float _Depth_Blend;
             sampler2D _CameraDepthTexture;
 
             fragment vert (appdata v)
             {
                 fragment o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                o.screenPos = ComputeScreenPos(o.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _Texture);
+                
                 o.worldNormal = UnityObjectToWorldNormal(v.normal);
                 float3 worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
                 o.viewDir = normalize(_WorldSpaceCameraPos.xyz - worldPos);
+                o.screenPos = ComputeScreenPos(o.vertex);
                 return o;
             }
 
@@ -89,13 +92,13 @@ Shader "Unlit/E1.Shield_effect"
                 return fresnel;
             }
             
-            float GetIntersection(float4 screenPos)
+            float GetIntersection(float shieldDepth, float2 uv)
             {
-                float2 screenUV = screenPos.xy / screenPos.w;
-                float depth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, screenUV);
-                depth -= screenPos.a;
-                depth *= _Depth_Blend;
-                return 1 - clamp(depth, 0.f, 1.f);
+                float depth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, uv);
+                depth = LinearEyeDepth(depth);
+                float diff = depth - shieldDepth;
+                float result = pow(saturate(1-diff), _Fresnel_Power);
+                return result;
             }
             
             float SoftLight(float base, float blend)
@@ -107,6 +110,8 @@ Shader "Unlit/E1.Shield_effect"
             
             fixed4 frag (fragment i) : SV_Target
             {
+                fixed4 color;
+                
                 float4 tex = GetTextureSample(i.uv);
                 float scanLine = GetScanLine(i.uv);
 
@@ -114,10 +119,13 @@ Shader "Unlit/E1.Shield_effect"
                 float3 viewDir = normalize(i.viewDir);
 
                 float fresnel = GetFresnel(viewNormal, viewDir);
-                float intersection = GetIntersection(i.screenPos);
+                
+                float intersection = GetIntersection(i.screenPos.a, i.uv);
 
                 float result = SoftLight(fresnel + intersection, tex * scanLine);
-                return float4(_Color.xyz, result);
+                color.rgb = _Color;
+                color.a = result;
+                return color;
             }
             ENDCG
         }
