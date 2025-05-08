@@ -84,18 +84,25 @@ Shader "Unlit/E1.Shield_effect"
             {
                 float fresnel = dot(normal,viewDir);
                 fresnel = saturate(1-fresnel);
-                fresnel =  pow(fresnel, _Fresnel_Power);
+                fresnel = pow(fresnel, _Fresnel_Power);
                 
                 return fresnel;
             }
-            
             
             float GetIntersection(float4 screenPos)
             {
                 float2 screenUV = screenPos.xy / screenPos.w;
                 float depth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, screenUV);
-                depth = depth - (screenPos.a - _Depth_Blend);
-                return 1 - saturate(depth);
+                depth -= screenPos.a;
+                depth *= _Depth_Blend;
+                return 1 - clamp(depth, 0.f, 1.f);
+            }
+            
+            float SoftLight(float base, float blend)
+            {
+                float resultA = 2.0 * base * blend + base * base * (1.0 - 2.0 * blend);
+                float resultB = sqrt(base) * (2.0 * blend - 1.0) + 2.0 * base * (1.0 - blend);
+                return lerp(resultA, resultB, step(0.5, blend));
             }
             
             fixed4 frag (fragment i) : SV_Target
@@ -108,7 +115,9 @@ Shader "Unlit/E1.Shield_effect"
 
                 float fresnel = GetFresnel(viewNormal, viewDir);
                 float intersection = GetIntersection(i.screenPos);
-                return intersection;
+
+                float result = SoftLight(fresnel + intersection, tex * scanLine);
+                return float4(_Color.xyz, result);
             }
             ENDCG
         }
