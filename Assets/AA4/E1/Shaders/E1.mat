@@ -8,28 +8,26 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: E1
-  m_Shader: {fileID: -6465566751694194690, guid: 2ada046338a44fc4db1a891b29da67da,
-    type: 3}
+  m_Shader: {fileID: 4800000, guid: 0ecca95270eb6174c9aea7c5391c42f7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
+  m_ValidKeywords: []
+  m_InvalidKeywords:
   - _SURFACE_TYPE_TRANSPARENT
-  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap:
-    RenderType: Transparent
+  stringTagMap: {}
   disabledShaderPasses:
   - DepthOnly
-  m_LockedProperties: _Fresnel_Power
+  m_LockedProperties: _Fresnel_Power _Texture
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - _Texture:
         m_Texture: {fileID: 2800000, guid: 14bede7f9f670ae42bb37a0da043e91e, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 1.5, y: 1.5}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
@@ -53,7 +51,7 @@ Material:
     - _DEBUG: 0
     - _Depth_Blend: 5
     - _DstBlend: 10
-    - _Fresnel_Power: 12.9
+    - _Fresnel_Power: 13
     - _Fresnel_Reflection: 0.3
     - _QueueControl: 0
     - _QueueOffset: 0
