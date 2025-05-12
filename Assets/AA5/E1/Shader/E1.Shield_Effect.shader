@@ -68,7 +68,7 @@ Shader "Unlit/E1.Shield_effect"
             float4 GetTextureSample(float2 uv)
             {
                 float2 offset = float2(0.0, _Time.y * _Texture_Speed);
-                uv = uv * uv + offset;
+                uv = uv + offset;
                 float4 tex = tex2D(_Texture, uv);
                 tex -= 1;
                 return tex;
@@ -98,7 +98,8 @@ Shader "Unlit/E1.Shield_effect"
                 depth = LinearEyeDepth(depth);
                 float diff = depth - shieldDepth;
                 float result = pow(saturate(1-diff), _Fresnel_Power);
-                return result;
+                result = saturate(result);
+                return depth;
             }
             
             float SoftLight(float base, float blend)
@@ -120,12 +121,12 @@ Shader "Unlit/E1.Shield_effect"
 
                 float fresnel = GetFresnel(viewNormal, viewDir);
                 
-                float intersection = GetIntersection(i.screenPos.a, i.uv);
+                float intersection = GetIntersection(i.screenPos.a, i.screenPos.xy / i.screenPos.w);
 
                 float result = SoftLight(fresnel + intersection, tex * scanLine);
                 color.rgb = _Color;
-                color.a = result;
-                return color;
+                color.a = intersection;
+                return intersection;
             }
             ENDCG
         }
